@@ -76,6 +76,30 @@ class PanguSpacingProcessorTest {
 		assertEquals(countGaps(text, false), countGaps(text, true));
 	}
 
+	@Test
+	void disabledProcessorPassesTextThroughWithoutGaps() {
+		StringBuilder output = new StringBuilder();
+		int[] gaps = {0};
+		PanguSpacingProcessor<Integer> processor = new PanguSpacingProcessor<>(new PanguSpacingProcessor.Target<>() {
+			@Override
+			public boolean advanceGap(int boundaryIndex, Integer boundaryStyle, Integer westernStyle) {
+				gaps[0]++;
+				return true;
+			}
+
+			@Override
+			public boolean accept(int index, Integer style, int codePoint) {
+				output.appendCodePoint(codePoint);
+				return true;
+			}
+		}, false, false);
+
+		feed("中文Minecraft", processor, false);
+
+		assertEquals("中文Minecraft", output.toString());
+		assertEquals(0, gaps[0]);
+	}
+
 	private static void assertVisual(String expected, String input) {
 		StringBuilder output = new StringBuilder();
 		PanguSpacingProcessor<Integer> processor = new PanguSpacingProcessor<>(new PanguSpacingProcessor.Target<>() {

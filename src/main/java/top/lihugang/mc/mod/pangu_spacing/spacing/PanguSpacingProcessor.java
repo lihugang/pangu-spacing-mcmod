@@ -17,6 +17,7 @@ public final class PanguSpacingProcessor<S> {
 
 	private final Target<S> target;
 	private final boolean backwards;
+	private final boolean enabled;
 
 	private boolean hasPending;
 	private boolean stopped;
@@ -36,13 +37,21 @@ public final class PanguSpacingProcessor<S> {
 	private int quoteMask;
 
 	public PanguSpacingProcessor(Target<S> target, boolean backwards) {
+		this(target, backwards, true);
+	}
+
+	public PanguSpacingProcessor(Target<S> target, boolean backwards, boolean enabled) {
 		this.target = Objects.requireNonNull(target, "target");
 		this.backwards = backwards;
+		this.enabled = enabled;
 	}
 
 	public boolean accept(int index, S style, int codePoint) {
 		if (stopped) {
 			return false;
+		}
+		if (!enabled) {
+			return target.accept(index, style, codePoint);
 		}
 
 		int kind = PanguCharacterClassifier.classify(codePoint, backwards);

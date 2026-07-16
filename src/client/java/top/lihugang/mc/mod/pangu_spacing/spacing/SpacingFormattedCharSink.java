@@ -6,6 +6,7 @@ package top.lihugang.mc.mod.pangu_spacing.spacing;
 
 import net.minecraft.network.chat.Style;
 import net.minecraft.util.FormattedCharSink;
+import top.lihugang.mc.mod.pangu_spacing.PanguSpacingConfig;
 
 public final class SpacingFormattedCharSink implements FormattedCharSink {
 	private final FormattedCharSink delegate;
@@ -23,7 +24,7 @@ public final class SpacingFormattedCharSink implements FormattedCharSink {
 			public boolean accept(int index, Style style, int codePoint) {
 				return SpacingFormattedCharSink.this.delegate.accept(index, style, codePoint);
 			}
-		}, backwards);
+		}, backwards, PanguSpacingConfig.isEnabled());
 	}
 
 	@Override

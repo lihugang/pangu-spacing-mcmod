@@ -7,6 +7,7 @@ package top.lihugang.mc.mod.pangu_spacing.spacing;
 import net.minecraft.client.StringSplitter;
 import net.minecraft.network.chat.Style;
 import net.minecraft.util.FormattedCharSink;
+import top.lihugang.mc.mod.pangu_spacing.PanguSpacingConfig;
 
 public final class SpacingWidthSink implements FormattedCharSink {
 	private final StringSplitter.WidthProvider widthProvider;
@@ -27,7 +28,7 @@ public final class SpacingWidthSink implements FormattedCharSink {
 				width += SpacingWidthSink.this.widthProvider.getWidth(codePoint, style);
 				return true;
 			}
-		}, backwards);
+		}, backwards, PanguSpacingConfig.isEnabled());
 	}
 
 	@Override

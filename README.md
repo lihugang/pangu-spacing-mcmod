@@ -18,9 +18,13 @@ The implementation is allocation-free per code point: it uses a one-code-point l
 
 - Minecraft Java Edition 26.1
 - Fabric Loader 0.19.3 or newer
+- Fabric API 0.145.1 or newer for Minecraft 26.1
 - Liberica JDK 25
 
-Fabric API is not required and is intentionally not included.
+## Client Commands
+
+- `/pangu` shows whether Pangu Spacing is enabled.
+- `/pangu toggle` enables or disables Pangu Spacing and saves the setting to `config/pangu_spacing.json`.
 
 ## Development
 
@@ -36,7 +40,7 @@ Run the development client:
 ./gradlew runClient
 ```
 
-The release JAR is written to `build/libs/pangu_spacing-0.1.0.jar`.
+The release JAR is written to `build/libs/pangu_spacing-0.1.1.jar`.
 
 ## License
 
