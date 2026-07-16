@@ -40,6 +40,8 @@ After / 安装 Mod 后：
 
 - Lightweight & High Performance: Minimal impact on game performance, utilizing efficient regex/character checking.
 
+- In-game Commands: Quickly check the status with `/pangu` or toggle the spacing on/off on the fly using `/pangu toggle` without restarting the game.
+
 Chinese translation for features:
 
 - 实时格式化：无缝支持聊天信息、物品提示、服务器公告、书籍、甚至其他模组的 GUI 文本。
@@ -47,6 +49,8 @@ Chinese translation for features:
 - 纯客户端模组：无需服务器支持。安装后，你可以带着它加入任何原版或跨版本服务器，不影响正常联机。
 
 - 轻量且无感：采用高效的字符匹配算法，对游戏帧率和文本渲染性能几乎零影响。
+
+- 便捷命令： 支持在游戏内使用命令 `/pangu` 查看当前启用状态，支持输入 `/pangu toggle` 一键开关模组。
 
 ## Installation / 安装方法：
 
