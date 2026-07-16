@@ -1,0 +1,19 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "top.lihugang.mc.mod.pangu_spacing.mixin.client",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"FontAccessor",
+		"FontMixin",
+		"FontPreparedTextBuilderMixin",
+		"LineBreakFinderMixin",
+		"StringSplitterAccessor",
+		"StringSplitterMixin",
+		"StringSplitterVisitorMixin",
+		"WidthLimitedCharSinkMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
