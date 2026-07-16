@@ -1,49 +1,73 @@
-# Pangu Spacing / 盘古间距
+# Pangu Spacing / 盘古之白
 
-Pangu Spacing is a client-side Fabric mod for Minecraft Java Edition 26.1.
+Automatically inserts spaces between CJK (Chinese, Japanese, Korean) characters and Latin alphabets/numbers in Minecraft for a cleaner, more readable chat and UI.
 
-盘古间距是一个面向 Minecraft Java Edition 26.1 的客户端 Fabric 模组。它会在游戏渲染的中西文边界增加透明的排版间距，同时保持实际文本不变。
+自动在 Minecraft 的中日韩字符（CJK）与拉丁字母、数字之间插入空格（盘古之白），告别挤作一团的排版，给你的游戏 UI 和聊天框带来呼吸感。
 
-## Behavior
+## Supports / 支持版本
 
-- Applies to text rendered through Minecraft's `Font`, including screens, HUD, chat, tooltips, books, signs, and entity labels.
-- Handles CJK/Western boundaries, brackets, quotes, punctuation, prefixes, and operators such as `+`, `-`, `*`, and `=`.
-- Uses the Western side's space-glyph advance, clamped to one quarter through one third of the 9-pixel line height.
-- Keeps copied text, chat messages, commands, translations, hover/click styles, and network data unchanged.
-- Uses the same spacing rules for drawing, measuring, clipping, centering, cursor placement, and line wrapping.
+- Minecraft 26.x Fabric
 
-The implementation is allocation-free per code point: it uses a one-code-point lookahead, primitive Unicode range checks, and cached font glyph data. Mods with their own font renderer are outside the supported rendering path.
+We plan to port this mod to older Minecraft versions and add (Neo)Forge support.
 
-## Requirements
+我们有将此 Mod 移植到 (Neo)Forge 和更老的 Minecraft 版本的计划。
 
-- Minecraft Java Edition 26.1
-- Fabric Loader 0.19.3 or newer
-- Fabric API 0.145.1 or newer for Minecraft 26.1
-- Liberica JDK 25
+## Introduction / 简介
 
-## Client Commands
+In Chinese, Japanese, and Korean (CJK) typesetting, it is a common aesthetic practice to leave a blank space between CJK characters and Latin characters (letters, numbers, and symbols) — a concept affectionately known in the Chinese community as "Pangu's Whitespace" (盘古之白).
 
-- `/pangu` shows whether Pangu Spacing is enabled.
-- `/pangu toggle` enables or disables Pangu Spacing and saves the setting to `config/pangu_spacing.json`.
+This mod automatically applies this spacing rule to Minecraft's text rendering, making your in-game text, chat, tooltips, and menus look beautifully formatted and much easier to read.
 
-## Development
+在中文排版审美中，在中文字符与英文字母、数字之间留出一个空格的间距（俗称“盘古之白”），能够极大地提升文本的可读性和视觉美感。
 
-Build the mod:
+本模组通过拦截并自动处理游戏内的文本渲染，将这一排版规则带入 Minecraft。无论是聊天栏、物品提示（Tooltip）、公告、书籍还是各类 GUI 界面，都能自动呈现出最优雅的排版效果。
 
-```sh
-./gradlew build
-```
+## Effects / 效果
 
-Run the development client:
+Before / 安装 Mod 前：
 
-```sh
-./gradlew runClient
-```
+![Before](https://github.com/user-attachments/assets/ad7fe336-f231-4f1f-b0fe-9e00717e6497)
 
-The release JAR is written to `build/libs/pangu_spacing-0.1.1.jar`.
+After / 安装 Mod 后：
 
-## License
+![After](https://github.com/user-attachments/assets/b94c2537-c18a-45f3-a93e-d4afadb010e6)
 
-Copyright (C) lihugang
+## Features / 特性：
+
+- Real-time Formatting: Automatically formats chat messages, item tooltips, books, and GUI text.
+
+- Client-side Only: Runs entirely on the client. You can join any vanilla or modded server with this mod installed.
+
+- Lightweight & High Performance: Minimal impact on game performance, utilizing efficient regex/character checking.
+
+Chinese translation for features:
+
+- 实时格式化：无缝支持聊天信息、物品提示、服务器公告、书籍、甚至其他模组的 GUI 文本。
+
+- 纯客户端模组：无需服务器支持。安装后，你可以带着它加入任何原版或跨版本服务器，不影响正常联机。
+
+- 轻量且无感：采用高效的字符匹配算法，对游戏帧率和文本渲染性能几乎零影响。
+
+## Installation / 安装方法：
+
+1. Make sure you have [Fabric / Forge / NeoForge] installed.
+2. Download the latest `.jar` file from the Modrinth [Modrinth Page Link Placeholder].
+3. Drop the file into your `.minecraft/mods` folder.
+4. Launch the game and enjoy the beautiful typography!
+
+Chinese translation for installation methods:
+
+1. 请确保你已安装 [Fabric / Forge / NeoForge] 对应版本的加载器。
+2. 前往 Modrinth 页面下载最新的 `.jar` 文件。
+3. 将下载的文件放入你游戏目录的 `.minecraft/mods` 文件夹中。
+4. 启动游戏，享受盘古之白吧！
+
+## License / 协议
+
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues](https://github.com/lihugang/pangu-spacing-mcmod/issues) page.
 
 This project is licensed under the GNU General Public License v3.0 only (`GPL-3.0-only`). See [LICENSE](LICENSE) for the complete terms.
+
+欢迎提交 Bug 反馈、功能建议或 Pull Request！如果你有任何想法，请随时提交 [Issue](https://github.com/lihugang/pangu-spacing-mcmod/issues)。
+
+本项目采用 GPL v3.0 协议，完整条款请见 [LICENSE](LICENSE).
