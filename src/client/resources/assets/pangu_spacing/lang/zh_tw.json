@@ -1,5 +1,6 @@
 {
-  "pangu_spacing.status": "[盤古之白] 狀態：%s",
+  "pangu_spacing.status.prefix": "[盤古之白]",
+  "pangu_spacing.status": " 狀態：%s",
   "pangu_spacing.status.enabled": "啟用",
   "pangu_spacing.status.disabled": "關閉"
 }

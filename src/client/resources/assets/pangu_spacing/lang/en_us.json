@@ -1,5 +1,6 @@
 {
-  "pangu_spacing.status": "[Pangu Spacing] Status: %s",
+  "pangu_spacing.status.prefix": "[Pangu Spacing]",
+  "pangu_spacing.status": " Status: %s",
   "pangu_spacing.status.enabled": "On",
   "pangu_spacing.status.disabled": "Off"
 }

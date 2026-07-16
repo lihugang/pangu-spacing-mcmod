@@ -1,5 +1,6 @@
 {
-  "pangu_spacing.status": "[盤古スペーシング] 状態: %s",
+  "pangu_spacing.status.prefix": "[盤古スペーシング]",
+  "pangu_spacing.status": " 状態: %s",
   "pangu_spacing.status.enabled": "オン",
   "pangu_spacing.status.disabled": "オフ"
 }

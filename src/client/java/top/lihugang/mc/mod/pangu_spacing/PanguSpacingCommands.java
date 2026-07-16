@@ -34,7 +34,11 @@ public final class PanguSpacingCommands {
 		Component state = Component.translatable(
 				enabled ? "pangu_spacing.status.enabled" : "pangu_spacing.status.disabled")
 				.withStyle(enabled ? ChatFormatting.GREEN : ChatFormatting.RED);
-		source.sendFeedback(Component.translatable("pangu_spacing.status", state));
+		Component feedback = Component.literal("§e")
+				.append(Component.translatable("pangu_spacing.status.prefix"))
+				.append(Component.literal("§f"))
+				.append(Component.translatable("pangu_spacing.status", state));
+		source.sendFeedback(feedback);
 		return 1;
 	}
 }

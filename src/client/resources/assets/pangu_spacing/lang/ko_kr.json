@@ -1,5 +1,6 @@
 {
-  "pangu_spacing.status": "[판구 띄어쓰기] 상태: %s",
+  "pangu_spacing.status.prefix": "[판구 띄어쓰기]",
+  "pangu_spacing.status": " 상태: %s",
   "pangu_spacing.status.enabled": "켜짐",
   "pangu_spacing.status.disabled": "꺼짐"
 }
