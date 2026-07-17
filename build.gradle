@@ -1,5 +1,5 @@
 plugins {
-	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'base'
 	id 'maven-publish'
 }
 
@@ -10,82 +10,98 @@ base {
 	archivesName = project.archives_base_name
 }
 
-repositories {
-	// Loom supplies the repositories required for Minecraft and Fabric Loader.
+def universalInputTasks = [':fabric:jar', ':neoforge:jar']
+
+def universalArchives = {
+	[
+		project(':fabric').tasks.named('jar').get().archiveFile.get().asFile,
+		project(':neoforge').tasks.named('jar').get().archiveFile.get().asFile
+	]
 }
 
-loom {
-	splitEnvironmentSourceSets()
+tasks.register('verifyUniversalInputs') {
+	dependsOn universalInputTasks
 
-	mods {
-		"pangu_spacing" {
-			sourceSet sourceSets.main
-			sourceSet sourceSets.client
+	doLast {
+		def entries = [:]
+		universalArchives().each { archive ->
+			zipTree(archive).visit { details ->
+				if (details.directory || details.path == 'META-INF/MANIFEST.MF') {
+					return
+				}
+				def content = details.file.bytes
+				def existing = entries.putIfAbsent(details.path, [archive: archive, content: content])
+				if (existing != null && !java.util.Arrays.equals(existing.content, content)) {
+					throw new GradleException("Universal JAR conflict at ${details.path}: ${existing.archive} and ${archive}")
+				}
+			}
 		}
 	}
 }
 
-dependencies {
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+tasks.register('universalJar', Jar) {
+	dependsOn tasks.named('verifyUniversalInputs')
+	destinationDirectory = layout.buildDirectory.dir('libs')
+	archiveFileName = "${project.archives_base_name}-${project.version}-${project.minecraft_version}.jar"
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
-	testImplementation "org.junit.jupiter:junit-jupiter:5.13.4"
-	testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.13.4"
-}
+	from({
+		zipTree(universalArchives()[0]).matching {
+			exclude 'META-INF/MANIFEST.MF'
+		}
+	})
+	from({
+		zipTree(universalArchives()[1]).matching {
+			exclude 'META-INF/MANIFEST.MF'
+		}
+	})
 
-test {
-	useJUnitPlatform()
-}
-
-processResources {
-	def modVersion = project.version
-	inputs.property "version", modVersion
-
-	filesMatching("fabric.mod.json") {
-		expand "version": modVersion
+	manifest {
+		attributes(
+				'Mod-Id': project.mod_id,
+				'Mod-Version': project.version,
+				'Minecraft-Version': project.minecraft_version
+		)
 	}
 }
 
-tasks.withType(JavaCompile).configureEach {
-	options.encoding = 'UTF-8'
-	options.release = 25
+tasks.register('sourcesJar', Jar) {
+	destinationDirectory = layout.buildDirectory.dir('libs')
+	archiveClassifier = 'sources'
+	from 'common/src/main/java'
+	from 'common/src/client/java'
+	from 'common/src/main/resources'
+	from 'common/src/test/java'
+	from 'fabric/src/client/java'
+	from 'fabric/src/main/resources'
+	from 'neoforge/src/main/java'
+	from 'neoforge/src/main/templates'
 }
 
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(25)
-		vendor = JvmVendorSpec.BELLSOFT
-	}
-
-	withSourcesJar()
-	sourceCompatibility = JavaVersion.VERSION_25
-	targetCompatibility = JavaVersion.VERSION_25
+tasks.named('assemble') {
+	dependsOn tasks.named('universalJar'), tasks.named('sourcesJar')
 }
 
-jar {
-	from("LICENSE") {
-		rename { "${it}_${project.name}" }
-	}
-}
-
-def modJarFileName = "${project.archives_base_name}-${project.version}-fabric-${project.minecraft_version}.jar"
-
-tasks.named("jar") {
-	archiveFileName = modJarFileName
-}
-
-tasks.configureEach {
-	if (name == "remapJar") {
-		archiveFileName = modJarFileName
-	}
+tasks.named('build') {
+	dependsOn ':common:test', tasks.named('universalJar')
 }
 
 publishing {
 	publications {
-		create("mavenJava", MavenPublication) {
+		create('universal', MavenPublication) {
 			artifactId = project.archives_base_name
-			from components.java
+			artifact tasks.named('universalJar')
+			artifact tasks.named('sourcesJar')
+			pom {
+				name = 'Pangu Spacing'
+				description = 'Pangu spacing universal Fabric and NeoForge mod'
+				licenses {
+					license {
+						name = 'GNU General Public License v3.0 only'
+						url = 'https://www.gnu.org/licenses/gpl-3.0.html'
+					}
+				}
+			}
 		}
 	}
 }

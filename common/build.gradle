@@ -1,0 +1,39 @@
+plugins {
+	id 'java-library'
+}
+
+version = rootProject.version
+group = rootProject.group
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compileOnly 'com.google.code.gson:gson:2.13.2'
+	compileOnly 'org.slf4j:slf4j-api:2.0.17'
+
+	testImplementation 'com.google.code.gson:gson:2.13.2'
+	testImplementation 'org.slf4j:slf4j-api:2.0.17'
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.13.4'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.13.4'
+}
+
+tasks.withType(JavaCompile).configureEach {
+	options.encoding = 'UTF-8'
+	options.release = 25
+}
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(25)
+		vendor = JvmVendorSpec.BELLSOFT
+	}
+	withSourcesJar()
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+test {
+	useJUnitPlatform()
+}

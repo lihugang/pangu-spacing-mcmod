@@ -10,3 +10,5 @@ pluginManagement {
 }
 
 rootProject.name = 'pangu_spacing'
+
+include 'common', 'fabric', 'neoforge'

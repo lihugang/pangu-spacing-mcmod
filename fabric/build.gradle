@@ -1,0 +1,74 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'maven-publish'
+}
+
+version = rootProject.version
+group = rootProject.group
+
+base {
+	archivesName = rootProject.archives_base_name
+}
+
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		"${rootProject.mod_id}" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+}
+
+sourceSets {
+	client {
+		java.srcDir rootProject.file('common/src/client/java')
+	}
+	main {
+		resources.srcDir rootProject.file('common/src/main/resources')
+	}
+}
+
+repositories {
+	// Loom supplies the repositories required for Minecraft and Fabric Loader.
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+	implementation "net.fabricmc:fabric-loader:${rootProject.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_version}"
+	implementation project(':common')
+}
+
+processResources {
+	def modVersion = project.version
+	inputs.property 'version', modVersion
+
+	filesMatching('fabric.mod.json') {
+		expand 'version': modVersion
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	options.encoding = 'UTF-8'
+	options.release = 25
+}
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(25)
+		vendor = JvmVendorSpec.BELLSOFT
+	}
+	withSourcesJar()
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+	archiveFileName = "${rootProject.archives_base_name}-${rootProject.version}-fabric-${rootProject.minecraft_version}.jar"
+	from project(':common').sourceSets.main.output.classesDirs
+	from(rootProject.file('LICENSE')) {
+		rename { "${it}_${rootProject.name}" }
+	}
+}
