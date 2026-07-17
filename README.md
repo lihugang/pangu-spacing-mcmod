@@ -7,10 +7,11 @@ Automatically inserts spaces between CJK (Chinese, Japanese, Korean) characters 
 ## Supports / 支持版本
 
 - Minecraft 26.x Fabric
+- Minecraft 26.x NeoForge
 
-We plan to port this mod to older Minecraft versions and add (Neo)Forge support.
+We plan to port this mod to older Minecraft versions.
 
-我们有将此 Mod 移植到 (Neo)Forge 和更老的 Minecraft 版本的计划。
+我们有将此 Mod 移植到先前的 Minecraft 版本的计划。
 
 ## Introduction / 简介
 
@@ -55,14 +56,14 @@ Chinese translation for features:
 ## Installation / 安装方法：
 
 1. Make sure you have [Fabric / Forge / NeoForge] installed.
-2. Download the latest `.jar` file from the Modrinth [Modrinth Page Link Placeholder].
+2. Download the latest `.jar` file from [Modrinth](https://modrinth.com/mod/pangu-spacing).
 3. Drop the file into your `.minecraft/mods` folder.
 4. Launch the game and enjoy the beautiful typography!
 
 Chinese translation for installation methods:
 
 1. 请确保你已安装 [Fabric / Forge / NeoForge] 对应版本的加载器。
-2. 前往 Modrinth 页面下载最新的 `.jar` 文件。
+2. 前往 [Modrinth](https://modrinth.com/mod/pangu-spacing) 页面下载最新的 `.jar` 文件。
 3. 将下载的文件放入你游戏目录的 `.minecraft/mods` 文件夹中。
 4. 启动游戏，享受盘古之白吧！
 
