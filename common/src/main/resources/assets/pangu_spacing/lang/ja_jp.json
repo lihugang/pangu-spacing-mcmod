@@ -1,4 +1,9 @@
 {
+  "pangu_spacing.info.version": "バージョン：%s",
+  "pangu_spacing.info.developer": "開発者：%s",
+  "pangu_spacing.info.status": "状態：%s",
+  "pangu_spacing.info.modrinth": "Modrinth URL：",
+  "pangu_spacing.info.sponsor": "作者を支援：",
   "pangu_spacing.status.prefix": "[盤古スペーシング]",
   "pangu_spacing.status": " 状態: %s",
   "pangu_spacing.status.enabled": "オン",

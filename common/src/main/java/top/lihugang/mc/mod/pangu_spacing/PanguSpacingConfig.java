@@ -38,6 +38,7 @@ public final class PanguSpacingConfig {
 		configPath = path;
 		if (!Files.isRegularFile(path)) {
 			enabled = DEFAULT_ENABLED;
+			save();
 			return;
 		}
 

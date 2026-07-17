@@ -1,4 +1,9 @@
 {
+  "pangu_spacing.info.version": "版本：%s",
+  "pangu_spacing.info.developer": "开发者：%s",
+  "pangu_spacing.info.status": "状态：%s",
+  "pangu_spacing.info.modrinth": "下载地址：",
+  "pangu_spacing.info.sponsor": "赞助作者：",
   "pangu_spacing.status.prefix": "[盘古之白]",
   "pangu_spacing.status": " 状态：%s",
   "pangu_spacing.status.enabled": "启用",

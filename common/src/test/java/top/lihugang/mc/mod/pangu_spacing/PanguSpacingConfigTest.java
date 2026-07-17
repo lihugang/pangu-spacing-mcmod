@@ -20,17 +20,23 @@ class PanguSpacingConfigTest {
 
 	@Test
 	void defaultsToEnabledWhenConfigIsMissing() {
-		PanguSpacingConfig.load(temporaryDirectory.resolve("missing.json"));
+		Path config = temporaryDirectory.resolve("missing.json");
+		PanguSpacingConfig.load(config);
 
 		assertTrue(PanguSpacingConfig.isEnabled());
+		assertTrue(Files.exists(config));
 	}
 
 	@Test
-	void persistsToggledState() {
+	void persistsToggledState() throws IOException {
 		Path config = temporaryDirectory.resolve("config").resolve("pangu_spacing.json");
 		PanguSpacingConfig.load(config);
 
 		assertFalse(PanguSpacingConfig.toggle());
+		String saved = Files.readString(config, StandardCharsets.UTF_8);
+		assertFalse(saved.contains("developer"));
+		assertFalse(saved.contains("modrinth_url"));
+		assertFalse(saved.contains("ifdian.net"));
 		PanguSpacingConfig.load(config);
 		assertFalse(PanguSpacingConfig.isEnabled());
 

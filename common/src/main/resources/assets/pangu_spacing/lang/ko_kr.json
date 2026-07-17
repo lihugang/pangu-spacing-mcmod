@@ -1,4 +1,9 @@
 {
+  "pangu_spacing.info.version": "버전: %s",
+  "pangu_spacing.info.developer": "개발자: %s",
+  "pangu_spacing.info.status": "상태: %s",
+  "pangu_spacing.info.modrinth": "Modrinth 주소: ",
+  "pangu_spacing.info.sponsor": "개발자 후원: ",
   "pangu_spacing.status.prefix": "[판구 띄어쓰기]",
   "pangu_spacing.status": " 상태: %s",
   "pangu_spacing.status.enabled": "켜짐",

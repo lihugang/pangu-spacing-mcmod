@@ -1,4 +1,9 @@
 {
+  "pangu_spacing.info.version": "Version: %s",
+  "pangu_spacing.info.developer": "Developer: %s",
+  "pangu_spacing.info.status": "Status: %s",
+  "pangu_spacing.info.modrinth": "Download URL: ",
+  "pangu_spacing.info.sponsor": "Sponsor the author: ",
   "pangu_spacing.status.prefix": "[Pangu Spacing]",
   "pangu_spacing.status": " Status: %s",
   "pangu_spacing.status.enabled": "On",

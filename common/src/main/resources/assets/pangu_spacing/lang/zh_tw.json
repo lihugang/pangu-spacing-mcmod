@@ -1,4 +1,9 @@
 {
+  "pangu_spacing.info.version": "版本：%s",
+  "pangu_spacing.info.developer": "開發者：%s",
+  "pangu_spacing.info.status": "狀態：%s",
+  "pangu_spacing.info.modrinth": "下載網址：",
+  "pangu_spacing.info.sponsor": "贊助作者：",
   "pangu_spacing.status.prefix": "[盤古之白]",
   "pangu_spacing.status": " 狀態：%s",
   "pangu_spacing.status.enabled": "啟用",
