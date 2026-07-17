@@ -3,6 +3,7 @@
 	"id": "pangu_spacing",
 	"version": "${version}",
 	"name": "Pangu Spacing",
+	"icon": "assets/pangu_spacing/icon.png",
 	"description": "盘古间距：在中西文之间自动调整间距",
 	"authors": [
 		"lihugang"
