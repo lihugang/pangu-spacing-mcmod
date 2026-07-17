@@ -69,6 +69,18 @@ jar {
 	}
 }
 
+def modJarFileName = "${project.archives_base_name}-${project.version}-fabric-${project.minecraft_version}.jar"
+
+tasks.named("jar") {
+	archiveFileName = modJarFileName
+}
+
+tasks.configureEach {
+	if (name == "remapJar") {
+		archiveFileName = modJarFileName
+	}
+}
+
 publishing {
 	publications {
 		create("mavenJava", MavenPublication) {
