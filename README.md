@@ -19,7 +19,7 @@ In Chinese, Japanese, and Korean (CJK) typesetting, it is a common aesthetic pra
 
 This mod automatically applies this spacing rule to Minecraft's text rendering, making your in-game text, chat, tooltips, and menus look beautifully formatted and much easier to read.
 
-在中文排版审美中，在中文字符与英文字母、数字之间留出一个空格的间距（俗称“盘古之白”），能够极大地提升文本的可读性和视觉美感。
+中文排版审美中，在中文字符与英文字母、数字之间留出一个空格的间距（俗称“盘古之白”），能够极大地提升文本的可读性和视觉美感。
 
 本模组通过拦截并自动处理游戏内的文本渲染，将这一排版规则带入 Minecraft。无论是聊天栏、物品提示（Tooltip）、公告、书籍还是各类 GUI 界面，都能自动呈现出最优雅的排版效果。
 
